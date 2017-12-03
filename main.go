@@ -3,21 +3,21 @@ package main
 import (
 	"flag"
 	"fmt"
-	"go/parser"
-	"go/token"
 	"go/ast"
+	"go/parser"
+	"go/printer"
+	"go/token"
+	"os"
+	"path"
 	"strconv"
 	"strings"
-	"path"
-	"go/printer"
-	"os"
 )
 
 var (
-	packagePath = flag.String("package", "", "the package name")
-	from        = flag.String("from", ".*", "the old import that will be replaced")
-	replaceWith = flag.String("to", "", "the new import or import fragment")
-	dryRun      = flag.String("dryRun", "false", "prints out the changes only")
+	packagePath = flag.String("package", "", "the package path")
+	from        = flag.String("from", "", "the old import that will be replaced")
+	replaceWith = flag.String("to", "", "the new import")
+	dryRun      = flag.String("dryRun", "false", "prints out the changes. Does not edit files")
 )
 
 func main() {
@@ -44,6 +44,8 @@ func main() {
 					fmt.Println(err.Error())
 					break
 				}
+				ast.SortImports(fset, f)
+				fmt.Println("File updated:", fname)
 			}
 		}
 	}

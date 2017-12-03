@@ -1,10 +1,10 @@
 package main
 
 import (
-	"testing"
 	"go/parser"
 	"go/token"
 	"strings"
+	"testing"
 )
 
 func TestMain_Simple2(t *testing.T) {
@@ -27,7 +27,7 @@ import (
 	}
 	found := false
 	for _, i := range f.Imports {
-		found = strings.Index(i.Path.Value,"unicode") != -1 || found
+		found = strings.Index(i.Path.Value, "unicode") != -1 || found
 	}
 
 	if found {
@@ -55,7 +55,7 @@ import (
 	}
 	found := false
 	for _, i := range f.Imports {
-		found = strings.Index(i.Path.Value,"github.com") != -1 || found
+		found = strings.Index(i.Path.Value, "github.com") != -1 || found
 	}
 
 	if found {
