@@ -2,8 +2,7 @@
 Change imports in your go projects
 
 ```go
-go get github.com/eginez/go-import-change
-
+go get -u -v github.com/eginez/go-import-change
 ```
 
 To use the tool 
